@@ -1,6 +1,7 @@
 
 import _sqlite3 as sql
 
+
 def create_users_table(conn):
     """Create users table."""
     cursor = conn.cursor()
@@ -20,3 +21,4 @@ def create_all_tables(conn):
     create_cyber_incidents_table(conn)
     create_datasets_metadata_table(conn)
     create_it_tickets_table(conn)
+

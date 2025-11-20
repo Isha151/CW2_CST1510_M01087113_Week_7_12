@@ -26,3 +26,18 @@ st.divider()
 
 st.slider("Pick a value", min_value=0, max_value=100, value=50, step=10, key="slider_example")
 
+st.markdown('***Hello***')
+
+st.divider()
+
+if st.button("Click me"):
+    st.write("Clicked")
+
+
+
+name = st.text_input("Name")
+if st.button("Submit"):
+    if name:
+        st.success(f'Hello, {name}!')
+    else:
+        st.warning("Enter name")
