@@ -1,0 +1,9 @@
+dataset_name,category,source,last_updated,record_count,file_size_mb
+Network Logs 2024,Network Logs,Firewall,2024-11-20,15000,45.5
+Threat Intel Feed,Threat Intelligence,External Feed,2024-11-19,200,1.2
+User Login History,User Activity,Active Directory,2024-11-20,5000,15.0
+Malware Signatures,Security,Research Team,2024-10-30,1000,5.5
+Customer Transactions,Finance,Payment Gateway,2024-11-18,50000,120.5
+Employee Records,HR,HR System,2024-09-15,450,2.3
+Server Health Metrics,Infrastructure,Monitoring Tool,2024-11-21,25000,60.0
+Phishing Email Samples,Security,Email Gateway,2024-11-10,150,8.5

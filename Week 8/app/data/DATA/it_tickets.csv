@@ -1,0 +1,7 @@
+ticket_id,priority,status,category,subject,description,created_date,resolved_date,assigned_to
+TKT-1001,High,Open,Hardware,Laptop overheating,User reports laptop fan is loud and hot to touch,2024-11-18,,bob
+TKT-1002,Medium,Resolved,Software,Excel crashing,Office 365 crashes when opening large files,2024-11-15,2024-11-16,alice
+TKT-1003,Low,In Progress,Network,Wifi slow in lobby,Signal weak near reception area,2024-11-20,,bob
+TKT-1004,Critical,Open,Security,Suspicious popup,Potential adware detected on CEO laptop,2024-11-19,,alice
+TKT-1005,Medium,Open,Access,Password Reset,User locked out of account after 3 failed attempts,2024-11-21,,alice
+TKT-1006,Low,Closed,Hardware,Mouse broken,Left click not working on wireless mouse,2024-11-10,2024-11-11,bob
