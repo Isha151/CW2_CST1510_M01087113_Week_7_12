@@ -29,7 +29,7 @@ st.title("🔐 Welcome")
 if st.session_state.logged_in:
     st.success(f"✅ You are logged in as **{st.session_state.username}**.")
     if st.button("Go to Dashboard"):
-        st.switch_page("pages/1_Dashboard.py")
+        st.switch_page("pages/Cyber_Dashboard.py")
     
     st.stop()
 
@@ -50,7 +50,7 @@ with tab_login:
             st.session_state.logged_in = True
             st.session_state.username = login_user_input
             st.success(msg)
-            st.switch_page("pages/1_Dashboard.py")
+            st.switch_page("pages/Cyber_Dashboard.py")
         else:
             st.error(msg)
 
