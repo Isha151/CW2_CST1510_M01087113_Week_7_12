@@ -1,20 +1,14 @@
 import streamlit as st
 import sys
-from pathlib import Path
-
 
 st.set_page_config(page_title="Login / Register", page_icon="🔑", layout="centered")
 
 
-week8_path = Path(__file__).resolve().parent.parent.parent / "Week 8"
-sys.path.append(str(week8_path))
+sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8\app\services")
 
 
-try:
-    from app.services.user_service import login_user, register_user
-except ImportError:
-    st.error(f"⚠️ Error: Could not find Week 8 code. Python looked in: {week8_path}")
-    st.stop()
+from app.services.user_service import login_user, register_user
+
 
 
 if "logged_in" not in st.session_state:

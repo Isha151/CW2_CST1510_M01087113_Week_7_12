@@ -5,27 +5,27 @@ USER_DATA_FILE = "users.txt"
 
 def hash_password(password):
    
-    # TODO: Encode the password to bytes (bcrypt requires byte strings)
+    # Encode the password to bytes (bcrypt requires byte strings)
     byte_data = password.encode('utf-8')
     
-    # TODO: Generate a salt using bcrypt.gensalt()
+    # Generate a salt using bcrypt.gensalt()
     salt = bcrypt.gensalt()
     
-    # TODO: Hash the password using bcrypt.hashpw()
+    # Hash the password using bcrypt.hashpw()
     hashed_password_bytes = bcrypt.hashpw(byte_data, salt)
     
-    # TODO: Decode the hash back to a string to store in a text file
+    # Decode the hash back to a string to store in a text file
     hashed_password_string = hashed_password_bytes.decode('utf-8')
 
     return hashed_password_string
 
 def verify_password(password, hashed_password):
     
-    # TODO: Encode both the plaintext password and the stored hash to byt
+    # Encode both the plaintext password and the stored hash to byt
     plain_text_bytes = password.encode('utf-8')
     hashed_bytes = hashed_password.encode('utf-8')
     
-    # TODO: Use bcrypt.checkpw() to verify the password
+    # Use bcrypt.checkpw() to verify the password
     # This function extracts the salt from the hash and compares
 
     match = bcrypt.checkpw(plain_text_bytes, hashed_bytes)
@@ -52,12 +52,12 @@ def register_user(username, password):
         return False
 
 def user_exists(username):
-    # TODO: Handle the case where the file doesn't exist yet
+    # Handle the case where the file doesn't exist yet
     if not os.path.exists(USER_DATA_FILE):
         return False
   
     
-    # TODO: Read the file and check each line for the username
+    # Read the file and check each line for the username
     existing_username = username
     with open(USER_DATA_FILE, 'r') as f:
         for line in f:
@@ -69,13 +69,13 @@ def user_exists(username):
     return False
 
 def login_user(username, password):
-    # TODO: Handle the case where no users are registered yet
+    # Handle the case where no users are registered yet
     if not os.path.exists(USER_DATA_FILE):
          print("Login failed, no users registered yet!")
          return False
    
     
-    # TODO: Search for the username in the file
+    # Search for the username in the file
     with open(USER_DATA_FILE, 'r') as f:
          for line in f:
               parts = line.strip().split(',',1)
@@ -86,7 +86,7 @@ def login_user(username, password):
                     stored_hash = hashed_password
                     break
  
-    # TODO: If username matches, verify the password
+    # If username matches, verify the password
     if found_user:
          if verify_password(password, hashed_password):
               print(f'Login successful for user{username}')

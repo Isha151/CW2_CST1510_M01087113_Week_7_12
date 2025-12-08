@@ -1,23 +1,13 @@
 import streamlit as st
 import sys
-from pathlib import Path
 from openai import OpenAI
-import streamlit as st
 
 
-st.set_page_config(page_title="Cyber Dashboard", page_icon="📊", layout="wide")
 
+sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8\app\data")
 
-week8_path = Path(__file__).resolve().parent.parent.parent.parent / "Week 8"
-sys.path.append(str(week8_path))
-
-
-try:
-    from app.data.db import connect_database
-    from app.data.incidents import get_all_incidents, insert_incident
-except ImportError:
-    st.error("⚠️ Setup Error: Could not find Week 8 functions.")
-    st.stop()
+from app.data.db import connect_database
+from app.data.incidents import get_all_incidents
 
 
 if "logged_in" not in st.session_state:
@@ -46,34 +36,34 @@ except Exception as e:
 
 
 st.divider()
-st.subheader("Report New Incident")
+# st.subheader("Report New Incident")
 
-with st.form("new_incident_form"):
-    col1, col2 = st.columns(2)
+# with st.form("new_incident_form"):
+#     col1, col2 = st.columns(2)
     
-    with col1:
-        new_date = st.date_input("Date")
-        new_title = st.text_input("Title/Description")
-        new_type = st.selectbox("Type", ["Phishing", "Malware", "DDoS", "Ransomware"])
+#     with col1:
+#         new_date = st.date_input("Date")
+#         new_title = st.text_input("Title/Description")
+#         new_type = st.selectbox("Type", ["Phishing", "Malware", "DDoS", "Ransomware"])
     
-    with col2:
-        new_severity = st.selectbox("Severity", ["Low", "Medium", "High", "Critical"])
-        new_status = st.selectbox("Status", ["Open", "In Progress", "Resolved"])
+#     with col2:
+#         new_severity = st.selectbox("Severity", ["Low", "Medium", "High", "Critical"])
+#         new_status = st.selectbox("Status", ["Open", "In Progress", "Resolved"])
     
-    submitted = st.form_submit_button("Submit Report")
+#     submitted = st.form_submit_button("Submit Report")
     
-    if submitted:
-        insert_incident(
-            conn, 
-            str(new_date), 
-            new_type, 
-            new_severity, 
-            new_status, 
-            new_title, 
-            st.session_state.username
-        )
-        st.success("✅ Incident reported successfully!")
-        st.rerun()
+#     if submitted:
+#         insert_incident(
+#             conn, 
+#             str(new_date), 
+#             new_type, 
+#             new_severity, 
+#             new_status, 
+#             new_title, 
+#             st.session_state.username
+#         )
+#         st.success("✅ Incident reported successfully!")
+#         st.rerun()
 
 
 
@@ -89,17 +79,10 @@ if not st.session_state.logged_in:
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 
-# ═══════════════════════════════════════════════# STEP 1: Initialize session state for messages# ═══════════════════════════════════════════════if"messages"not in st.session_state:
+
 st.session_state.messages = [
     {"role": "system", "content": "You are a helpful assistant."}
 ]
-
-# ═══════════════════════════════════════════════# STEP 2: Display existing messages# ═══════════════════════════════════════════════for message in st.session_state.messages:
-    # Skip system messages (don't show to user)if message["role"] != "system":
-# with st.chat_message(message["role"]):
-#     st.write(message["content"])
-
-# ═══════════════════════════════════════════════# STEP 3: Handle user input# ═══════════════════════════════════════════════
 user_input = st.chat_input("Type your message...")
 
 if user_input:

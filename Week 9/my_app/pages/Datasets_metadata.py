@@ -1,19 +1,21 @@
 import streamlit as st
-from app.data.db import connect_database
-from app.data.datasets import get_all_datasets, insert_dataset
 import pandas as pd
 import os, openai
+import sys
 
+sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8")
 
+from app.data.db import connect_database
+from app.data.datasets import get_all_datasets, insert_dataset
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-if not st.session_state.logged_in:
-    st.error("⛔ You must be logged in to view this page.")
-    if st.button("Go to Login"):
-        st.switch_page("Home.py")
-    st.stop()
+# if not st.session_state.logged_in:
+#     st.error("⛔ You must be logged in to view this page.")
+#     if st.button("Go to Login"):
+#         st.switch_page("Home.py")
+#     st.stop()
 
 st.set_page_config(page_title="Datasets Metadata", layout="wide")
 

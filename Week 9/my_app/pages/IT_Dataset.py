@@ -1,26 +1,30 @@
 import streamlit as st
+import os, openai
+import sys
+
+sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8\app\data")
+
 from app.data.db import connect_database
 from app.data.tickets import get_all_incidents as get_all_tickets, insert_ticket
-import pandas as pd
-import os, openai
 
 
-conn = connect_database()  
-df = get_all_tickets(conn)  
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-if not st.session_state.logged_in:
-    st.error("⛔ You must be logged in to view this page.")
-    if st.button("Go to Login"):
-        st.switch_page("Home.py")
-    st.stop()
+# if not st.session_state.logged_in:
+#     st.error("⛔ You must be logged in to view this page.")
+#     if st.button("Go to Login"):
+#         st.switch_page("Home.py")
+#     st.stop()
 
 st.set_page_config(page_title="IT Support Tickets", layout="wide")
 
 st.title("🛠️ IT Support Tickets Dashboard")
 
+
+conn = connect_database()  
+df = get_all_tickets(conn)  
 
 
 st.subheader("Ticket Stats")
@@ -37,21 +41,6 @@ with c3:
     closed_count = df[df["status"] == "Closed"].shape[0] if "status" in df else 0
     st.metric("Closed Tickets", closed_count)
 
-
-st.subheader("Create New Ticket")
-
-with st.expander("Add ticket"):
-    with st.form("ticket_form"):
-        title = st.text_input("Issue Title")
-        priority = st.selectbox("Priority", ["Low", "Medium", "High"])
-        status = st.selectbox("Status", ["Open", "In Progress", "Closed"])
-
-        submitted = st.form_submit_button("Submit Ticket")
-
-        if submitted:
-            insert_ticket(conn, title, priority, status)  # Inserts into it_tickets table
-            st.success("Ticket submitted successfully!")
-            st.experimental_rerun()
 
 
 st.subheader("Ticket Records")

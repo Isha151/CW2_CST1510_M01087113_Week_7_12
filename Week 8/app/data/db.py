@@ -1,12 +1,13 @@
 import sqlite3
-from pathlib import Path
+import os
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-DB_PATH = PROJECT_ROOT / "DATA" / "intelligence_platform.db"
+def connect_database():
+    # 1. Get the folder where THIS file is right now
+    current_dir = os.path.dirname(__file__)
 
-def connect_database(db_path=None):
-    if db_path is None:
-        db_path = DB_PATH
-    
-    Path(db_path).parent.mkdir(parents=True, exist_ok=True)
-    return sqlite3.connect(str(db_path))
+    # 2. Create the path to the database
+    # ".." means "go up one folder". We do it twice to go back two levels.
+    db_path = os.path.join(current_dir, "../../DATA/intelligence_platform.db")
+
+    # 3. Connect and return the connection
+    return sqlite3.connect(db_path)
