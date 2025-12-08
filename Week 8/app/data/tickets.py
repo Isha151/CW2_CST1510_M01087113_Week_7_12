@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+import uuid
 
 def create_it_tickets_table(conn):
     cursor = conn.cursor()
@@ -32,6 +33,7 @@ def insert_ticket(conn, subject, priority, status):
     """
     create_it_tickets_table(conn)  # Ensure table exists
     cursor = conn.cursor()
+    ticket_id = str(uuid.uuid4())
     cursor.execute(
         "INSERT INTO it_tickets (subject, priority, status) VALUES (?, ?, ?)",
         (subject, priority, status)

@@ -4,23 +4,25 @@ from app.data.tickets import get_all_incidents as get_all_tickets, insert_ticket
 import pandas as pd
 import os, openai
 
-# --- Database Connection ---
-conn = connect_database()  # Make sure this comes first
-df = get_all_tickets(conn)  # Fetch tickets after connecting
 
-# # --- Access Control ---
-# if "logged_in" not in st.session_state:
-#     st.session_state.logged_in = False
+conn = connect_database()  
+df = get_all_tickets(conn)  
 
-# if not st.session_state.logged_in:
-#     st.error("Please log in to view this page.")
-#     st.stop()
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+if not st.session_state.logged_in:
+    st.error("⛔ You must be logged in to view this page.")
+    if st.button("Go to Login"):
+        st.switch_page("Home.py")
+    st.stop()
 
 st.set_page_config(page_title="IT Support Tickets", layout="wide")
 
 st.title("🛠️ IT Support Tickets Dashboard")
 
-# --- Metrics ---
+
+
 st.subheader("Ticket Stats")
 c1, c2, c3 = st.columns(3)
 
@@ -35,7 +37,7 @@ with c3:
     closed_count = df[df["status"] == "Closed"].shape[0] if "status" in df else 0
     st.metric("Closed Tickets", closed_count)
 
-# --- Add Ticket ---
+
 st.subheader("Create New Ticket")
 
 with st.expander("Add ticket"):
@@ -51,11 +53,11 @@ with st.expander("Add ticket"):
             st.success("Ticket submitted successfully!")
             st.experimental_rerun()
 
-# --- Display Table ---
+
 st.subheader("Ticket Records")
 st.dataframe(df, use_container_width=True)
 
-# --- Chatbot ---
+
 st.subheader("Chat with IT Ticket Assistant")
 
 cols = df.columns.tolist() if not df.empty else []

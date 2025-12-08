@@ -6,12 +6,13 @@ import os, openai
 
 
 
-# --- Access Control ---
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if not st.session_state.logged_in:
-    st.error("You must be logged in to view this page.")
+    st.error("⛔ You must be logged in to view this page.")
+    if st.button("Go to Login"):
+        st.switch_page("Home.py")
     st.stop()
 
 st.set_page_config(page_title="Datasets Metadata", layout="wide")
@@ -21,7 +22,7 @@ st.title("📁 Datasets Metadata Dashboard")
 conn = connect_database()
 df = get_all_datasets(conn)
 
-# --- Upload CSV ---
+
 st.subheader("Upload Metadata CSV")
 
 uploaded = st.file_uploader("Upload datasets_metadata.csv", type=["csv"])
@@ -41,13 +42,13 @@ if uploaded:
         st.success("CSV imported to database.")
         st.experimental_rerun()
 
-# --- Display existing data ---
+
 st.subheader("Metadata Records")
 
 df = get_all_datasets(conn)
 st.dataframe(df, use_container_width=True)
 
-# --- Chatbot ---
+
 st.subheader("Chat with Metadata Assistant")
 
 cols = df.columns.tolist() if not df.empty else []

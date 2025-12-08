@@ -5,3 +5,47 @@ TKT-1003,Low,In Progress,Network,Wifi slow in lobby,Signal weak near reception a
 TKT-1004,Critical,Open,Security,Suspicious popup,Potential adware detected on CEO laptop,2024-11-19,,alice
 TKT-1005,Medium,Open,Access,Password Reset,User locked out of account after 3 failed attempts,2024-11-21,,alice
 TKT-1006,Low,Closed,Hardware,Mouse broken,Left click not working on wireless mouse,2024-11-10,2024-11-11,bob
+TKT-1007,Low,Resolved,Software,Adobe Reader update,User needs admin rights to update PDF reader,2024-11-22,2024-11-22,charlie
+TKT-1008,High,In Progress,Network,Cannot access file server,Shared drive X: is unreachable for HR team,2024-11-22,,bob
+TKT-1009,Medium,Resolved,Hardware,Printer paper jam,2nd floor printer keeps jamming,2024-11-23,2024-11-23,diana
+TKT-1010,Critical,Closed,Security,Phishing email report,User clicked link in suspicious email,2024-11-12,2024-11-12,alice
+TKT-1011,Medium,Open,Access,VPN Connection fail,Cisco AnyConnect rejects credentials,2024-11-24,,charlie
+TKT-1012,Low,Open,Software,Font installation,Marketing needs Helvetica font installed,2024-11-24,,diana
+TKT-1013,High,Resolved,Hardware,Monitor flickering,External display goes black intermittently,2024-11-18,2024-11-20,bob
+TKT-1014,Medium,In Progress,Software,Teams audio issue,Microphone not working in meetings,2024-11-25,,alice
+TKT-1015,Low,Resolved,Access,New hire setup,Create account for John Doe,2024-11-15,2024-11-15,diana
+TKT-1016,Critical,Open,Network,Internet outage,Entire 3rd floor lost connection,2024-11-26,,bob
+TKT-1017,Medium,Resolved,Hardware,Keyboard sticky keys,Spacebar stuck on laptop keyboard,2024-11-14,2024-11-16,charlie
+TKT-1018,High,Open,Security,Lost badge reported,Employee lost ID card in parking lot,2024-11-26,,alice
+TKT-1019,Low,Closed,Software,Browser cache clear,Chrome not loading intranet site correctly,2024-11-10,2024-11-10,diana
+TKT-1020,Medium,Open,Network,Guest Wifi voucher,Requesting guest access for client meeting,2024-11-27,,charlie
+TKT-1021,High,In Progress,Access,MFA not working,Authenticator app code invalid,2024-11-27,,bob
+TKT-1022,Low,Resolved,Hardware,Headset replacement,Ear cushion ripped on headset,2024-11-20,2024-11-21,alice
+TKT-1023,Medium,Open,Software,Python environment,Dev needs Python 3.11 installed,2024-11-28,,diana
+TKT-1024,Critical,Resolved,Security,Ransomware alert,Anti-virus blocked encryption attempt,2024-11-15,2024-11-15,alice
+TKT-1025,High,Open,Network,VoIP phones down,Sales team cannot make outgoing calls,2024-11-28,,bob
+TKT-1026,Medium,Closed,Access,Shared mailbox add,Add user to HR-Recruiting mailbox,2024-11-12,2024-11-13,charlie
+TKT-1027,Low,Open,Hardware,Docking station issue,USB ports not recognizing devices,2024-11-29,,diana
+TKT-1028,Medium,In Progress,Software,Salesforce slow,Loading customer records takes 30s,2024-11-29,,alice
+TKT-1029,High,Resolved,Network,VPN latency,Remote users reporting lag,2024-11-22,2024-11-24,bob
+TKT-1030,Low,Resolved,Access,Name change,Update email alias for marriage,2024-11-18,2024-11-19,charlie
+TKT-1031,Critical,Open,Security,Firewall breach attempt,Multiple failed logins from external IP,2024-11-30,,alice
+TKT-1032,Medium,Open,Hardware,Projector bulb dim,Conference Room B projector needs maintenance,2024-11-30,,diana
+TKT-1033,Low,Closed,Software,Outlook signature,Help formatting HTML signature,2024-11-14,2024-11-14,bob
+TKT-1034,Medium,In Progress,Access,Folder permission,User cannot save to Public folder,2024-12-01,,charlie
+TKT-1035,High,Resolved,Hardware,Laptop battery dead,Battery won't hold charge,2024-11-25,2024-11-27,alice
+TKT-1036,Low,Open,Network,Static IP request,Lab printer needs fixed IP,2024-12-01,,diana
+TKT-1037,Medium,Resolved,Software,Zoom update,Client unable to join meeting due to version,2024-11-26,2024-11-26,bob
+TKT-1038,Critical,In Progress,Security,Data leak check,Sensitive file found on public share,2024-12-02,,alice
+TKT-1039,High,Open,Access,Admin rights request,Developer needs local admin for testing,2024-12-02,,charlie
+TKT-1040,Medium,Resolved,Hardware,Touchpad glitch,Cursor jumps randomly,2024-11-28,2024-11-30,diana
+TKT-1041,Low,Open,Software,WinZip license,License expired warning,2024-12-03,,bob
+TKT-1042,Medium,In Progress,Network,Switch port error,Port 42 flapping on 2nd floor switch,2024-12-03,,alice
+TKT-1043,High,Resolved,Access,Account unlock,Finance director locked out,2024-11-29,2024-11-29,charlie
+TKT-1044,Low,Closed,Hardware,Cable management,Loose cables under desk hazard,2024-11-15,2024-11-16,diana
+TKT-1045,Medium,Open,Security,Antivirus outdated,Workstation 404 definitions old,2024-12-03,,bob
+TKT-1046,Critical,Resolved,Network,Core router reboot,Main office internet drop,2024-11-20,2024-11-20,alice
+TKT-1047,Medium,Open,Software,SharePoint sync,OneDrive not syncing libraries,2024-12-04,,charlie
+TKT-1048,Low,Resolved,Access,Intranet access,Intern needs access to wiki,2024-11-25,2024-11-25,diana
+TKT-1049,High,In Progress,Hardware,Server fan failure,Rack server temp warning,2024-12-04,,bob
+TKT-1050,Medium,Open,Software,CRM login error,API error 500 when logging in,2024-12-04,,alice
