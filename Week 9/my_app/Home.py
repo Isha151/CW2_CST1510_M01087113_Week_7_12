@@ -1,10 +1,11 @@
 import streamlit as st
 import sys
 
+
 st.set_page_config(page_title="Login / Register", page_icon="🔑", layout="centered")
 
 
-sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8\app\services")
+sys.path.append(r"D:\MDX\CW2_CST1510_M01087113_Week_7_12\Week 8")
 
 
 from app.services.user_service import login_user, register_user

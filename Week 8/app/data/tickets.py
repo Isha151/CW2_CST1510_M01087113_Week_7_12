@@ -23,19 +23,36 @@ def create_it_tickets_table(conn):
     conn.commit()
     print('✅ it_tickets table created successfully!')
 
-def get_all_incidents(conn):
-    create_it_tickets_table(conn)  # ensure table exists
+def get_all_tickets(conn):
+    create_it_tickets_table(conn)  
     return pd.read_sql_query("SELECT * FROM it_tickets", conn)
 
-def insert_ticket(conn, subject, priority, status):
-    """
-    Insert a new ticket into the database.
-    """
-    create_it_tickets_table(conn)  # Ensure table exists
+def insert_ticket(conn, subject, priority, status, category, description):
     cursor = conn.cursor()
-    ticket_id = str(uuid.uuid4())
-    cursor.execute(
-        "INSERT INTO it_tickets (subject, priority, status) VALUES (?, ?, ?)",
-        (subject, priority, status)
-    )
+    sql = """
+        INSERT INTO it_tickets (subject, priority, status, category, description)
+        VALUES (?, ?, ?, ?, ?)
+    """
+    cursor.execute(sql, (subject, priority, status, category, description))
     conn.commit()
+    return cursor.rowcount
+
+
+def update_ticket(conn, ticket_id, new_status, new_priority):
+    cursor = conn.cursor()
+    sql = """
+        UPDATE it_tickets
+        SET status = ?, priority = ?
+        WHERE id = ?
+    """
+    cursor.execute(sql, (new_status, new_priority, ticket_id))
+    conn.commit()
+    return cursor.rowcount
+
+
+def delete_ticket(conn, ticket_id):
+    cursor = conn.cursor()
+    sql = "DELETE FROM it_tickets WHERE id = ?"
+    cursor.execute(sql, (ticket_id,))
+    conn.commit()
+    return cursor.rowcount

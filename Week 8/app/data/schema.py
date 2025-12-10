@@ -1,4 +1,3 @@
-# app/data/schema.py
 
 def create_users_table(conn):
     """Create the users table."""
