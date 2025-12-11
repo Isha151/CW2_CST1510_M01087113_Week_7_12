@@ -1,12 +1,23 @@
 class SecurityIncident:
     """Represents a cybersecurity incident in the platform."""
 
-    def __init__(self, incident_id: int, incident_type: str, severity: str):
-        self.__id = incident_id
-        self.__incident_type = incident_type
-        self.__severity = severity
-        self.__status = status
-        self.__description = description
+    def __init__(
+        self,
+        incident_id: int,
+        date: str,
+        incident_type: str,
+        severity: str,
+        status: str,
+        description: str,
+        reported_by: str | None = None,
+    ):
+        self.id = incident_id
+        self.date = date
+        self.incident_type = incident_type
+        self.severity = severity
+        self.status = status
+        self.description = description
+        self.reported_by = reported_by
  
     def get_id(self) -> int:
         return self.__id
