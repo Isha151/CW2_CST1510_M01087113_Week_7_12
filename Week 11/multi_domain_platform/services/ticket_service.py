@@ -14,8 +14,8 @@ class TicketService:
         tickets = []
         for row in rows:
             ticket = ITTicket(
-                db_id=row[0],           # id
-                ticket_id=row[1],       # ticket_id
+                db_id=row[0],           
+                ticket_id=row[1],       
                 priority=row[2],
                 status=row[3],
                 category=row[4],

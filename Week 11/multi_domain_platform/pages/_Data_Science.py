@@ -9,11 +9,11 @@ if "username" not in st.session_state:
     st.session_state.username = "Username"
  
 
-# if not st.session_state.logged_in:
-#     st.error("⛔ You must be logged in to view this page.")
-#     if st.button("Go to Login"):
-#         st.switch_page("Home.py")
-#     st.stop()
+if not st.session_state.logged_in:
+    st.error("You must be logged in to view this page.")
+    if st.button("Go to Login"):
+        st.switch_page("Home.py")
+    st.stop()
 
 
 # AI chat history for THIS page only
@@ -129,13 +129,31 @@ if mode == "CRUD":
 
 # Analytics Funtion mode
 elif mode == "Analytics":
-    st.subheader("Analytics")
+
+    st.subheader("Dataset Analytics")
 
     df = pd.DataFrame([d.to_dict() for d in datasets])
 
-    st.write("Record Count by Category")
-    fig1 = df["category"].value_counts().plot(kind="bar").get_figure()
-    st.pyplot(fig1)
+
+    # Dataset metrics info
+    col1, col2 = st.columns(2)
+
+    col1.metric("Total Datasets", len(df))
+    col2.metric("Total Size (MB)", round(df["file_size_mb"].sum(), 2))
+
+    st.divider()
+
+
+    # Datasets by Category chart
+    st.subheader("Datasets by Category")
+    category_counts = df["category"].value_counts()
+    st.bar_chart(category_counts)
+
+
+    # Raw Dataset Metadata
+    st.subheader("Dataset Records")
+    st.dataframe(df, use_container_width=True)
+
 
 
 # AI Chat Funtion Mode

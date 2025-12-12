@@ -9,11 +9,11 @@ if "logged_in" not in st.session_state:
 if "username" not in st.session_state:
     st.session_state.username = "Username"
 
-# if not st.session_state.logged_in:
-#     st.error("⛔ You must be logged in to view this page.")
-#     if st.button("Go to Login"):
-#         st.switch_page("Home.py")
-#     st.stop()
+if not st.session_state.logged_in:
+    st.error("You must be logged in to view this page.")
+    if st.button("Go to Login"):
+        st.switch_page("Home.py")
+    st.stop()
 
 
 # AI chat history for THIS page only
@@ -143,41 +143,47 @@ if mode == "CRUD":
 # Analytics Funtion mode
 elif mode == "Analytics":
 
+    st.subheader("IT Ticket Analytics")
+
+    # Convert tickets to DataFrame
     df = pd.DataFrame([{
-        "id": t.db_id,
-        "ticket_id": t.ticket_id,
         "priority": t.priority,
         "status": t.status,
-        "category": t.category,
-        "subject": t.subject
+        "category": t.category
     } for t in tickets])
 
-    st.subheader("Ticket Stats")
 
-    c1, c2, c3 = st.columns(3)
+    # Key Metrics info
+    col1, col2, col3 = st.columns(3)
 
-    with c1:
-        st.metric("Total Tickets", len(df))
+    col1.metric("Total Tickets", len(df))
+    col2.metric("Open Tickets", (df["status"] == "Open").sum())
+    col3.metric("Closed Tickets", (df["status"] == "Closed").sum())
 
-    with c2:
-        open_count = df[df["status"] == "Open"].shape[0]
-        st.metric("Open Tickets", open_count)
-
-    with c3:
-        closed_count = df[df["status"] == "Closed"].shape[0]
-        st.metric("Closed Tickets", closed_count)
+    st.divider()
 
 
+    # Tickets by Priority chart
+    st.subheader("Tickets by Priority")
+    priority_counts = df["priority"].value_counts()
+    st.bar_chart(priority_counts)
+
+
+    # Tickets by Status chart
+    st.subheader("Tickets by Status")
+    status_counts = df["status"].value_counts()
+    st.bar_chart(status_counts)
+
+ 
+    # Tickets by Category chart
+    st.subheader("Tickets by Category")
+    category_counts = df["category"].value_counts()
+    st.bar_chart(category_counts)
+
+    # Raw Data 
     st.subheader("Ticket Records")
     st.dataframe(df, use_container_width=True)
 
-
-    import matplotlib.pyplot as plt
-
-    st.subheader("Record Count by Category")
-    fig1, ax1 = plt.subplots()
-    df["category"].value_counts().plot(kind="bar", ax=ax1)
-    st.pyplot(fig1)
 
 
 # AI Chat Funtion Mode

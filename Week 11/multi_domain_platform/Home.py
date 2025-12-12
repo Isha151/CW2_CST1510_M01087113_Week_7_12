@@ -69,7 +69,7 @@ with tab_register:
                 st.success("Account created successfully!")
                 st.info("You can now log in from the Login tab.")
             except Exception as e:
-                # Most common error: username already exists
+                # username already exists
                 if "UNIQUE constraint failed" in str(e):
                     st.error(f"The username '{new_user}' is already taken. Try another.")
                 else:

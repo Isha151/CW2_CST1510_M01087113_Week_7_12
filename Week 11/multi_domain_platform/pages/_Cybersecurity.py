@@ -9,11 +9,11 @@ if "logged_in" not in st.session_state:
 if "username" not in st.session_state:
     st.session_state.username = "Username"
     
-# if not st.session_state.logged_in:
-#     st.error("⛔ You must be logged in to view this page.")
-#     if st.button("Go to Login"):
-#         st.switch_page("Home.py")
-#     st.stop()
+if not st.session_state.logged_in:
+    st.error("You must be logged in to view this page.")
+    if st.button("Go to Login"):
+        st.switch_page("Home.py")
+    st.stop()
 
 
 # AI chat history for THIS page only
@@ -25,7 +25,7 @@ if "ai_messages_datasets" not in st.session_state:
 
 # Page config + title
 st.set_page_config(page_title="Datasets Metadata", layout="wide")
-st.title("📊 Cyber Incidents Dashboard")
+st.title("Cyber Incidents Dashboard")
 st.write(f"Welcome, **{st.session_state.username}**")
 
 
@@ -116,24 +116,42 @@ if mode == "CRUD":
 
 # Analytics Funtion mode
 elif mode == "Analytics":
-    st.subheader("Analytics")
 
-    import matplotlib.pyplot as plt
+    st.subheader("Cyber Incident Analytics")
 
+        # Convert incidents to DataFrame
     df = pd.DataFrame([{
-        "id": i.id,
-        "date": i.date,
-        "incident_type": i.incident_type,
         "severity": i.severity,
         "status": i.status,
-        "reported_by": i.reported_by
+        "incident_type": i.incident_type
     } for i in incidents])
 
+    
+    # Key Incidents Info
+    total_incidents = len(df)
+    high_count = (df["severity"] == "High").sum()
+    medium_count = (df["severity"] == "Medium").sum()
+    low_count = (df["severity"] == "Low").sum()
 
-    st.write("Record Count by Category")
-    fig1, ax1 = plt.subplots()
-    df['incident_type'].value_counts().plot(kind='bar', ax=ax1)
-    st.pyplot(fig1)
+    col1, col2, col3, col4 = st.columns(4)
+
+    col1.metric("Total Incidents", total_incidents)
+    col2.metric("High Severity", high_count)
+    col3.metric("Medium Severity", medium_count)
+    col4.metric("Low Severity", low_count)
+
+    st.divider()
+
+
+    # Incidents by Type Chart
+    st.subheader("Incidents by Type")
+    type_counts = df["incident_type"].value_counts()
+    st.bar_chart(type_counts)
+
+
+    # Raw Data
+    st.subheader("Incident Records")
+    st.dataframe(df, use_container_width=True)
 
 
 
