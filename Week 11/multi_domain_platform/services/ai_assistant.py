@@ -2,7 +2,6 @@ from openai import OpenAI
 import streamlit as st
 
 class AIAssistant:
-    """Simple chat assistant using OpenAI + Streamlit-style chat history."""
 
     def __init__(self, session_key: str, system_prompt: str = "You are a helpful assistant."):
         self.client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])

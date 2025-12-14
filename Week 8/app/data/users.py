@@ -20,3 +20,4 @@ def insert_user(conn, username, password_hash, role='user'):
         (username, password_hash, role)
     )
     conn.commit()
+
